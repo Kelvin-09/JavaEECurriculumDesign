@@ -48,18 +48,22 @@
                 <label>Email</label>
                 <input type="email" class="form-control" placeholder="Email">
               </div>
+              <div class="alert alert-danger">User name error!</div>
               <div class="form-group">
                 <label>Password</label>
                 <input type="password" class="form-control" placeholder="Password">
               </div>
+              <div class="alert alert-danger">User name error!</div>
               <div class="form-group">
                 <label>Confirm</label>
                 <input type="password" class="form-control" placeholder="Confirm">
               </div>
+              <div class="alert alert-danger">User name error!</div>
               <div class="form-group">
                 <label>Nickname</label>
                 <input type="text" class="form-control" placeholder="Nickname">
               </div>
+              <div class="alert alert-danger">User name error!</div>
               <input type="submit" value="login" class="btn btn-success pull-right">
             </form>
           </div>
@@ -71,5 +75,11 @@
 
   <script type="text/javascript" src="scripts/jquery.js"></script>
   <script type="text/javascript" src="scripts/bootstrap.js"></script>
+
+<script type="text/javascript">
+$(function () {
+  $('.alert:empty').css('display', 'none');
+})
+</script>
 </body>
 </html>
