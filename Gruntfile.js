@@ -16,10 +16,10 @@ module.exports = function (grunt) {
 
     // 监控文件变化并执行任务
     watch: {
-      bower: {
-        files: ['bower.json'],
-        tasks: ['wiredep']
-      },
+//      bower: {
+//        files: ['bower.json'],
+//        tasks: ['wiredep']
+//      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -81,16 +81,21 @@ module.exports = function (grunt) {
       }
     },
     // bower 路径依赖自动补全
-    wiredep: {
-      app: {
-        ignorePath: /^\/|\.\.\//,
-        src: ['<%= config.app %>/{,*/}*.html']
-      },
-      sass: {
-        ignorePath: /(\.\.\/){1,2}bower_components\//,
-        src: ['<%= config.app %>/styles/{,*/}*.{sass,scss}']
-      }
-    },
+//    wiredep: {
+//      app: {
+//        ignorePath: /^\/|\.\.\//,
+//        src: ['<%= config.app %>/{,*/}*.html']
+//      },
+//      sass: {
+//        ignorePath: /(\.\.\/){1,2}bower_components\//,
+//        src: ['<%= config.app %>/styles/{,*/}*.{sass,scss}']
+//      }
+//    },
+    // server 情况下运行 server 任务，该任务只复制字体和 js 文件到 config.temp 目录
+    // 发布情况下全部执行，先将 css 文件复制到 config.temp 文件夹中
+    // 再复制字体和 js 文件到 config.temp 文件夹
+    // 最后将所有网页文件和字体文件从 config.temp 文件夹复制到 config.dist 文件夹
+    // Ps: css 文件和 js 文件通过 cssmin 和 uglify 压缩后放入 config.dist 文件夹中，此处无需插手
     copy: {
       styles: {
         files: [{
@@ -108,6 +113,13 @@ module.exports = function (grunt) {
           cwd: 'bower_components/bootstrap-sass/assets/fonts',
           dest: '<%= config.temp %>/fonts',
           src: '{,*/}*'
+        }, {
+          dest: '<%= config.temp %>/scripts/jquery.js',
+          src: 'bower_components/jquery/dist/jquery.js'
+        }, {
+          cwd: '',
+          dest: '<%= config.temp %>/scripts/bootstrap.js',
+          src: 'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js'
         }]
       },
       dist: {
@@ -184,6 +196,17 @@ module.exports = function (grunt) {
         }]
       }
     },
+    uglify: {
+      dist: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: '<%= config.temp %>/scripts',
+          dest: '<%= config.dist %>/scripts',
+          src: ['{,*/}*.js']
+        }]
+      }
+    },
     // css 文件浏览器前缀补充
     autoprefixer: {
       options: {
@@ -221,7 +244,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'wiredep',
+//      'wiredep',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
@@ -231,10 +254,13 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'wiredep',
+//    'wiredep',
     'concurrent:dist',
     'autoprefixer',
-    'cssmin'
+    'cssmin',
+    'uglify'
   ]);
 };
 
+// sign 需要为 bower_components 文件夹加更新监听（虽然一般不能改里面的东西）
+// sign 图片压缩不知道需要不需要
