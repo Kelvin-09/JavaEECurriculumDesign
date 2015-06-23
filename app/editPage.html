@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>用户注册 —— Survey Door 调查系统</title>
+  <title>编辑页面内容 —— Survey Door 调查系统</title>
 
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
@@ -28,6 +28,8 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li><a href="userCenter.html">首页</a></li>
+          <li><a href="#">新建调查</a></li>
+          <li><a href="mySurvey.html">我的调查</a></li>
           <li><a href="listSurvey.html">参与调查</a></li>
           <li><a href="register.html">用户注册</a></li>
         </ul>
@@ -42,29 +44,17 @@
       <div class="col-sm-8 col-md-6 col-lg-4 login-box">
         <div class="panel panel-default">
           <div class="panel-body">
-            <h3>用户注册</h3>
+            <h3>编辑页面内容</h3>
             <form action="#">
               <div class="form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" placeholder="Email">
+                <label>页面标题</label>
+                <input type="text" class="form-control" value="页面标题" placeholder="页面标题">
               </div>
-              <div class="alert alert-danger">User name error!</div>
               <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" placeholder="Password">
+                <label>页面描述</label>
+                <textarea name="descripe" cols="30" rows="5" class="form-control" placeholder="页面描述"></textarea>
               </div>
-              <div class="alert alert-danger">User name error!</div>
-              <div class="form-group">
-                <label>Confirm</label>
-                <input type="password" class="form-control" placeholder="Confirm">
-              </div>
-              <div class="alert alert-danger">User name error!</div>
-              <div class="form-group">
-                <label>Nickname</label>
-                <input type="text" class="form-control" placeholder="Nickname">
-              </div>
-              <div class="alert alert-danger">User name error!</div>
-              <input type="submit" value="login" class="btn btn-success pull-right">
+              <input type="submit" value="Submit" class="btn btn-success pull-right">
             </form>
           </div>
         </div>
