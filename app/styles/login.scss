@@ -2,12 +2,7 @@ html, body {
   height: 100%;
 }
 
-.navbar-brand {
-  img {
-    height: 20px;
-    width: 20px;
-  }
-}
+@import "global";
 
 .login-body {
   background-color: #eee;
