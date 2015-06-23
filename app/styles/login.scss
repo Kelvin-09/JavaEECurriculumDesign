@@ -24,3 +24,9 @@ html, body {
     }
   }
 }
+
+.tab-pane {
+  .form-group:first-of-type {
+    margin-top: 15px;
+  }
+}

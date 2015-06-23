@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>选择问题类型 —— Survey Door 调查系统</title>
+  <title>非矩阵型文本问题设计 —— Survey Door 调查系统</title>
 
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
@@ -44,16 +44,13 @@
       <div class="col-sm-8 col-md-6 col-lg-4 login-box">
         <div class="panel panel-default">
           <div class="panel-body">
-            <h3>选择问题类型</h3>
+            <h3>非矩阵型文本问题设计</h3>
             <form action="#">
-              <select name="type" class="form-control">
-                <option value="1">option 1</option>
-                <option value="2">option 2</option>
-                <option value="3">option 3</option>
-                <option value="4">option 4</option>
-                <option value="5">option 5</option>
-                <option value="6">option 6</option>
-              </select>
+              <div class="form-group">
+                <label>问题标题</label>
+                <input type="text" class="form-control" placeholder="问题标题">
+              </div>
+              <input type="submit" value="Submit" class="btn btn-success pull-right">
             </form>
           </div>
         </div>
