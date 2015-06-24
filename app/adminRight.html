@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>用户授权管理 —— Survey Door 调查系统</title>
+  <title>权限管理 —— Survey Door 调查系统</title>
 
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
@@ -48,59 +48,81 @@
     <div class="row">
       <div class="col-sm-12 table-responsive">
         <div class="page-header">
-          <h1>用户授权管理</h1>
+          <h1>
+            <span>权限管理</span>
+            <a href="adminRightEdit.html" class="btn btn-primary btn-lg pull-right">添加权限</a>
+          </h1>
         </div>
         <table class="table">
           <thead>
             <tr>
-              <th>序号</th>
               <th>ID</th>
-              <th>email</th>
-              <th>昵称</th>
-              <th>修改授权</th>
-              <th>清除授权</th>
+              <th>权限名称</th>
+              <th>
+                <span>公共资源</span>
+                <br>
+                <label class="checkbox-inline">
+                  <input type="checkbox" name="selectAll">全选
+                </label>
+                <a href="#">反选</a>
+              </th>
+              <th>权限URL</th>
+              <th>权限位</th>
+              <th>权限码</th>
+              <th>修改</th>
+              <th>删除</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
-              <td>1</td>
-              <td>admin</td>
-              <td>admin</td>
-              <td><a href="adminAuthorizeEdit.html">修改授权</a></td>
-              <td><a href="#">清除授权</a></td>
+              <td><input type="text" name="name"></td>
+              <td><input type="checkbox" name="select"></td>
+              <td>/EngageSurveyAction_findAllAvailableSurveys</td>
+              <td>0</td>
+              <td>4</td>
+              <td><a href="adminRightEdit.html">修改</a></td>
+              <td><a href="#">删除</a></td>
             </tr>
             <tr>
               <td>1</td>
-              <td>1</td>
-              <td>admin</td>
-              <td>admin</td>
-              <td><a href="adminAuthorizeEdit.html">修改授权</a></td>
-              <td><a href="#">清除授权</a></td>
+              <td><input type="text" name="name"></td>
+              <td><input type="checkbox" name="select"></td>
+              <td>/EngageSurveyAction_findAllAvailableSurveys</td>
+              <td>0</td>
+              <td>4</td>
+              <td><a href="adminRightEdit.html">修改</a></td>
+              <td><a href="#">删除</a></td>
             </tr>
             <tr>
               <td>1</td>
-              <td>1</td>
-              <td>admin</td>
-              <td>admin</td>
-              <td><a href="adminAuthorizeEdit.html">修改授权</a></td>
-              <td><a href="#">清除授权</a></td>
+              <td><input type="text" name="name"></td>
+              <td><input type="checkbox" name="select"></td>
+              <td>/EngageSurveyAction_findAllAvailableSurveys</td>
+              <td>0</td>
+              <td>4</td>
+              <td><a href="adminRightEdit.html">修改</a></td>
+              <td><a href="#">删除</a></td>
             </tr>
             <tr>
               <td>1</td>
-              <td>1</td>
-              <td>admin</td>
-              <td>admin</td>
-              <td><a href="adminAuthorizeEdit.html">修改授权</a></td>
-              <td><a href="#">清除授权</a></td>
+              <td><input type="text" name="name"></td>
+              <td><input type="checkbox" name="select"></td>
+              <td>/EngageSurveyAction_findAllAvailableSurveys</td>
+              <td>0</td>
+              <td>4</td>
+              <td><a href="adminRightEdit.html">修改</a></td>
+              <td><a href="#">删除</a></td>
             </tr>
             <tr>
               <td>1</td>
-              <td>1</td>
-              <td>admin</td>
-              <td>admin</td>
-              <td><a href="adminAuthorizeEdit.html">修改授权</a></td>
-              <td><a href="#">清除授权</a></td>
+              <td><input type="text" name="name"></td>
+              <td><input type="checkbox" name="select"></td>
+              <td>/EngageSurveyAction_findAllAvailableSurveys</td>
+              <td>0</td>
+              <td>4</td>
+              <td><a href="adminRightEdit.html">修改</a></td>
+              <td><a href="#">删除</a></td>
             </tr>
           </tbody>
         </table>

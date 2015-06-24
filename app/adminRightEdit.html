@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>编辑权限 —— Survey Door 调查系统</title>
+
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="styles/bootstrap.css">
+  <link rel="stylesheet" href="styles/login.css">
+</head>
+<body>
+  <!-- nav start -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="#" class="navbar-brand">
+          <img src="images/keyboard_S.png" alt="SurveyDoor">
+        </a>
+        <a href="#" class="navbar-brand">Survey Door 调查系统</a>
+        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="userCenter.html">首页</a></li>
+          <li><a href="designSurvey.html">新建调查</a></li>
+          <li><a href="mySurvey.html">我的调查</a></li>
+          <li><a href="listSurvey.html">参与调查</a></li>
+          <li><a href="register.html">用户注册</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- nav end -->
+
+  <!-- body start -->
+  <div class="container-fluid login-body">
+    <div class="row">
+      <div class="col-sm-8 col-md-6 col-lg-4 login-box">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h3>编辑权限</h3>
+            <form action="#">
+              <div class="form-group">
+                <label>权限名称</label>
+                <input type="text" class="form-control" value="ChartOutputAction" placeholder="权限名称">
+              </div>
+              <div class="form-group">
+                <label>权限URL</label>
+                <input type="text" class="form-control" value="/ChartOutputAction" placeholder="权限URL">
+              </div>
+              <div class="form-group">
+                <label>权限位</label>
+                <input type="text" class="form-control" value="0" placeholder="权限位">
+              </div>
+              <div class="form-group">
+                <label>权限码</label>
+                <input type="text" class="form-control" value="1" placeholder="权限码">
+              </div>
+              <div class="form-group">
+                <label class="checkbox-inline">
+                  <input type="checkbox">公共资源
+                </label>
+              </div>
+              <div class="form-group">
+                <label>权限描述</label>
+                <textarea name="introduction" class="form-control" cols="30" rows="5" placeholder="权限描述"></textarea>
+                <span class="help-block">123</span>
+              </div>
+              <input type="submit" value="Submit" class="btn btn-success pull-right">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- body end -->
+
+  <script type="text/javascript" src="scripts/jquery.js"></script>
+  <script type="text/javascript" src="scripts/bootstrap.js"></script>
+
+<script type="text/javascript">
+$(function () {
+  $('.alert:empty').css('display', 'none');
+})
+</script>
+</body>
+</html>
