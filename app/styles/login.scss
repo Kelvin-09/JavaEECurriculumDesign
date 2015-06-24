@@ -21,6 +21,10 @@ html, body {
       display: table-cell;
       float: none;
       vertical-align: middle;
+
+      select[multiple] {
+        height: 200px;
+      }
     }
   }
 }

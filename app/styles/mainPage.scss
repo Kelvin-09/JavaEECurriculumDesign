@@ -18,7 +18,14 @@
   }
 }
 
+.thinner {
+  font-weight: 100;
+}
 
+a.thumbnail>img {
+  width: 128px;
+  height: 128px;
+}
 
 .footer {
   border-top: 1px solid #e5e5e5;
