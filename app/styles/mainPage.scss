@@ -5,6 +5,11 @@
 
   .control-container {
     padding: 0 10px;
+    
+    .form-inline-selfinline {
+      display: inline-block;
+      margin-left: 10px;
+    }
 
     table {
       .radio-inline, .checkbox-inline {
