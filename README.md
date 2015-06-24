@@ -1,4 +1,4 @@
-# The front end of my JavaEE curriculum design
+# JavaEE curriculum design's front end
 
 Packages Uses:
 1. bootstrap-sass
