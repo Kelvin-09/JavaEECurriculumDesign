@@ -57,7 +57,7 @@
               </div>
               <div class="form-group">
                   <label class="checkbox-inline">
-                    <input type="checkbox" name="has" value="1" data-toggle="collapse" data-target="#collapseOthers">是否含有“其它”选项
+                    <input type="checkbox" name="has" id="collapseSelected" data-toggle="collapse" data-target="#collapseOthers">是否含有“其它”选项
                   </label>
               </div>
               <div id="collapseOthers" class="collapse">
@@ -90,6 +90,7 @@
 <script type="text/javascript">
 $(function () {
   $('.alert:empty').css('display', 'none');
+  $('#collapseSelected:checked').length ? $('#collapseOthers').collapse() : void(0);
 })
 </script>
 </body>
