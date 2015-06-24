@@ -1,5 +1,17 @@
 @import "global";
 
+.personal-info {
+  margin-top: 40px;
+
+  .thumbnail {
+    width: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
 .form-survey {
   padding: 10px;
 
@@ -27,7 +39,7 @@
   font-weight: 100;
 }
 
-a.thumbnail>img {
+.media a.thumbnail>img {
   width: 128px;
   height: 128px;
 }
