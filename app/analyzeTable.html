@@ -8,6 +8,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
   <link rel="stylesheet" href="styles/bootstrap.css">
+  <link rel="stylesheet" href="styles/colors.css">
   <link rel="stylesheet" href="styles/mainPage.css">
   <link rel="stylesheet" href="styles/progressBarStrengthen.css">
 </head>
@@ -52,89 +53,6 @@
           </h1>
         </div>
         <div class="form-horizontal" id="chartContent">
-          <div class="form-group">
-            <label class="control-label col-sm-2">图例</label>
-            <div class="col-sm-10">
-              <div class="legend-container">
-                <div class="legend-box bg-success"></div>
-                <label class="legend-label">好</label>
-              </div>
-              <div class="legend-container">
-                <div class="legend-box bg-primary"></div>
-                <label class="legend-label">中</label>
-              </div>
-              <div class="legend-container">
-                <div class="legend-box progress-bar-warning"></div>
-                <label class="legend-label">差</label>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-sm-2 col-lg-1">小明</label>
-            <div class="col-sm-10  col-lg-11">
-              <div class="form-group">
-                <label class="control-label col-xs-2  col-lg-1">小学</label>
-                <div class="col-xs-10  col-lg-11">
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: 35%;">35</div>
-                    <div class="progress-bar progress-bar-primary" style="width: 35%;">35</div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-xs-2  col-lg-1">初中</label>
-                <div class="col-xs-10  col-lg-11">
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width:20%">20</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-sm-2 col-lg-1">小明</label>
-            <div class="col-sm-10  col-lg-11">
-              <div class="form-group">
-                <label class="control-label col-xs-2  col-lg-1">小学</label>
-                <div class="col-xs-10  col-lg-11">
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: 35%;">35</div>
-                    <div class="progress-bar progress-bar-primary" style="width: 35%;">35</div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-xs-2  col-lg-1">初中</label>
-                <div class="col-xs-10  col-lg-11">
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width:20%">20</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label col-sm-2 col-lg-1">小明</label>
-            <div class="col-sm-10  col-lg-11">
-              <div class="form-group">
-                <label class="control-label col-xs-2  col-lg-1">小学</label>
-                <div class="col-xs-10  col-lg-11">
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-success" style="width: 35%;">35</div>
-                    <div class="progress-bar progress-bar-primary" style="width: 35%;">35</div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label col-xs-2  col-lg-1">初中</label>
-                <div class="col-xs-10  col-lg-11">
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-warning" style="width:20%">20</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -242,7 +160,6 @@
 <script>
 $(function () {
   function transformData (data) {
-    console.log(data);
     // 用于存储转化完的数据
     var tableObject = {};
     // 数据矩阵
@@ -289,15 +206,35 @@ $(function () {
 
   // 计算总共sum个的情况下，需要使用的color数组
   function calculateColors (sum) {
-    var i, tempColor, result = [], colorMax = 16777215;
+    // var i, tempColor, result = [];
+    // var colorSalt = 3355443, colorScope = 16777215 - 2 * colorSalt;
 
-    for (i = 0; i < sum; ++i) {
-      tempColor = (colorMax * i / sum).toString(16);
-      tempColor = '#' + new Array(tempColor.length > 6 ? 0 : 6 - tempColor.length + 1).join('0') + tempColor;
-      result.push(tempColor);
-    }
+    // for (i = 0; i < sum; ++i) {
+    //   tempColor = (colorScope * i / sum + colorSalt).toString(16);
+    //   tempColor = '#' + new Array(tempColor.length > 6 ? 0 : 6 - tempColor.length + 1).join('0') + tempColor;
+    //   result.push(tempColor);
+    // }
 
-    return result;
+    // return result;
+
+    // [ 'bg-navy', 'bg-blue ', 'bg-aqua ', 'bg-teal ', 
+    //   'bg-olive ', 'bg-green ', 'bg-lime ', 'bg-yellow ', 
+    //   'bg-orange ', 'bg-red ', 'bg-fuchsia ', 'bg-purple ', 
+    //   'bg-maroon ', 'bg-white ', 'bg-gray ', 'bg-silver ', 'bg-black'
+    // ]
+
+    // var colorArray = [ 'bg-blue ', 'bg-aqua ', 'bg-teal ', 'bg-olive ', 
+    //   'bg-green ', 'bg-lime ', 'bg-yellow ', 'bg-orange ', 
+    //   'bg-red ', 'bg-maroon ', 'bg-fuchsia ', 'bg-purple ', 'bg-gray '
+    // ];
+    // var random = Math.random() * colorArray.length;
+
+    // return colorArray.slice(random).concat(colorArray.slice(0, random));
+
+    return [ 'bg-blue ', 'bg-aqua ', 'bg-teal ', 'bg-olive ', 
+      'bg-green ', 'bg-lime ', 'bg-yellow ', 'bg-orange ', 
+      'bg-red ', 'bg-maroon ', 'bg-fuchsia ', 'bg-purple ', 'bg-gray '
+    ];
   }
 
   // 图例标题模板
@@ -312,9 +249,13 @@ $(function () {
     '</div>';
   // form-group模板
   var formGroupTemplate = '<div class="form-group"></div>';
-  var progressRowTextTemplate = '<label class="control-label col-sm-2 col-lg-1">{0}</label>';
-  var progressColTextTemplate = '<label class="control-label col-xs-2 col-lg-1">{0}</label>';
+  var progressRowTextTemplate = '<label class="control-label col-sm-2 col-lg-1"></label>';
+  var progressColTextTemplate = '<label class="control-label col-xs-2 col-lg-1"></label>';
   var progressRowOutTemplate = '<div class="col-sm-10 col-lg-11"></div>';
+  var progressRowInTemplate = '<div class="col-xs-10  col-lg-11"></div>';
+  var progressBoxTemplate = '<div class="progress"></div>';
+  var progressBarTemplate = '<div class="progress-bar"></div>';
+  // style="min-width: 4em;"
 
   // 制作图例
   function produceLegend (selectOptions, colors) {
@@ -323,7 +264,7 @@ $(function () {
     legendText = $(legendTextTemplate);
     $.each(selectOptions, function (index, element) {
       legendContainer = $(legendContainerTemplate.replace(/\{0\}/, element));
-      legendContainer.find('.legend-box').css('backgroundColor', colors[index]);
+      legendContainer.find('.legend-box').addClass(colors[index]);
       legendContainers.push(legendContainer);
     })
 
@@ -336,18 +277,15 @@ $(function () {
     var formGroups = []; // 所有form-group框体
 
     // 初始化颜色
-    colors = calculateColors(data.matrixSelectOptionArr.length);
+    colors = calculateColors();
     // 初始化图例
     formGroups.push(produceLegend(data.matrixSelectOptionArr, colors));
 
-    var i, j, k, lenI, lenJ, lenK;
     var tempRowOptions, tempColOptions, tempSelectOptions;
-    var tempMatrix, tempMatrixRow, tempMatrixCol;
-    var matrixRowText, matrixColText;
-    var matrixRow, matrixCol;
-    var matrixCols = [];
-    var sortedArray, progressMatrix = [];
+    var tempMatrix;
+    var matrixCol, personCount;
 
+    personCount = data.count;
     tempRowOptions = data.matrixRowTitleArr;
     tempColOptions = data.matrixColTitleArr;
     tempSelectOptions = data.matrixSelectOptionArr;
@@ -355,41 +293,51 @@ $(function () {
     tempMatrix = data.dataMatrix;
 
     $.each(tempMatrix, function (indexRow, elementRow) {
-      matrixCols = [];
-      matrixRowText = $(progressRowTextTemplate.replace(/\{0\}/, tempRowOptions[indexRow]));
+      var matrixRowText, matrixRow;
+      var matrixCols = [];
+
+      matrixRowText = $(progressRowTextTemplate).text(tempRowOptions[indexRow]);
 
       $.each(elementRow, function (indexCol, elementCol) {
-        progressMatrix = [];
-        matrixColText = $(progressColTextTemplate.replace(/\{0\}/, tempColOptions[indexCol]));
+        var backupArray, sortedArray, progressMatrix = {}, tempLast = 0;
+        var matrixColText, matrixColBody, progressBox, progresseBars = [];
 
+        matrixColText = $(progressColTextTemplate).text(tempColOptions[indexCol]);
+        progressBox = $(progressBoxTemplate);
+
+        backupArray = elementCol.slice();
         sortedArray = elementCol.slice().sort(function (a, b) { return a - b; });
 
-        matrixCols.push($(formGroupTemplate).append(matrixColText));
+        $.each(sortedArray, function (indexArray, elementArray) {
+          var positionArray = backupArray.indexOf(elementArray);
+          backupArray[positionArray] = undefined;
+          progressMatrix[elementArray]? progressMatrix[elementArray].push(positionArray): progressMatrix[elementArray] = [positionArray];
+        });
+
+        $.each(progressMatrix, function (indexPersonCount, elementPersonCount) {
+          var progressMerge = [];
+          var progressBar = $(progressBarTemplate).css({
+            'width': ((indexPersonCount - tempLast) / personCount * 100) + '%'
+          });
+          tempLast = indexPersonCount;
+
+          $.each(elementPersonCount, function (indexSelect, elementSelect) {
+            progressMerge.push(tempSelectOptions[elementSelect]);
+            progressBar.addClass(colors[elementSelect]);
+          });
+
+          progressBar.text(progressMerge.join('&') + ' : ' + indexPersonCount + '人');
+          progresseBars.push(progressBar);
+        });
+
+        matrixColBody = $(progressRowInTemplate).append(progressBox.append(progresseBars));
+
+        matrixCols.push($(formGroupTemplate).append(matrixColText, matrixColBody));
       });
 
       matrixRow = $(formGroupTemplate).append(matrixRowText, $(progressRowOutTemplate).append(matrixCols));
       formGroups.push(matrixRow);
     });
-
-
-    // for (i = 0, lenI = tempMatrix.length; i < lenI; ++i) {
-    //   tempMatrixRow = tempMatrix[i];
-    //   matrixCols = [];
-    //   matrixRowText = $(progressRowTextTemplate.replace(/\{0\}/, tempRowOptions[i]));
-
-    //   for (j = 0, lenJ = tempMatrixRow.length; j < lenJ; ++j) {
-    //     tempMatrixCol = tempMatrixRow[j];
-    //     progressMatrix = [];
-    //     matrixColText = $(progressColTextTemplate.replace(/\{0\}/, tempColOptions[j]));
-
-    //     sortedArray = tempMatrixCol.slice().sort(function (a, b) { return a - b; });
-
-    //     matrixCols.push($(formGroupTemplate).append(matrixColText));
-    //   }
-
-    //   matrixRow = $(formGroupTemplate).append(matrixRowText, $(progressRowOutTemplate).append(matrixCols));
-    //   formGroups.push(matrixRow);
-    // }
 
     $('#chartContent').append(formGroups);
   }
@@ -410,11 +358,94 @@ $(function () {
 });
 </script>
 
+<script>
+var array_01 = [1, 2, 3, 4, 5];
+var array_02 = ['a', 'b', 'c', 'd', 'e'];
+var deferred = $.Deferred();
+$.when((function (inDeferred) {
+  $.each(array_01, function (index, element) {
+    console.log(element);
+  });
+  return inDeferred;
+})(deferred))
+.done(function () {
+  console.log('Success!');
+})
+.fail(function () {
+  console.log('Fail!');
+});
+</script>
+
+
+</body>
+</html>
+
 <!-- <div class="form-group">
+  <label class="control-label col-sm-2">图例</label>
+  <div class="col-sm-10">
+    <div class="legend-container">
+      <div class="legend-box bg-success"></div>
+      <label class="legend-label">好</label>
+    </div>
+    <div class="legend-container">
+      <div class="legend-box bg-primary"></div>
+      <label class="legend-label">中</label>
+    </div>
+    <div class="legend-container">
+      <div class="legend-box progress-bar-warning"></div>
+      <label class="legend-label">差</label>
+    </div>
+  </div>
+</div>
+<div class="form-group">
   <label class="control-label col-sm-2 col-lg-1">小明</label>
-  <div class="col-sm-10 col-lg-11">
+  <div class="col-sm-10  col-lg-11">
     <div class="form-group">
-      <label class="control-label col-xs-2 col-lg-1">小学</label>
+      <label class="control-label col-xs-2  col-lg-1">小学</label>
+      <div class="col-xs-10  col-lg-11">
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" style="width: 35%;">35</div>
+          <div class="progress-bar progress-bar-primary" style="width: 35%;">35</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-xs-2  col-lg-1">初中</label>
+      <div class="col-xs-10  col-lg-11">
+        <div class="progress">
+          <div class="progress-bar progress-bar-warning" style="width:20%">20</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label col-sm-2 col-lg-1">小明</label>
+  <div class="col-sm-10  col-lg-11">
+    <div class="form-group">
+      <label class="control-label col-xs-2  col-lg-1">小学</label>
+      <div class="col-xs-10  col-lg-11">
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" style="width: 35%;">35</div>
+          <div class="progress-bar progress-bar-primary" style="width: 35%;">35</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-xs-2  col-lg-1">初中</label>
+      <div class="col-xs-10  col-lg-11">
+        <div class="progress">
+          <div class="progress-bar progress-bar-warning" style="width:20%">20</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label col-sm-2 col-lg-1">小明</label>
+  <div class="col-sm-10  col-lg-11">
+    <div class="form-group">
+      <label class="control-label col-xs-2  col-lg-1">小学</label>
       <div class="col-xs-10  col-lg-11">
         <div class="progress">
           <div class="progress-bar progress-bar-success" style="width: 35%;">35</div>
@@ -432,6 +463,3 @@ $(function () {
     </div>
   </div>
 </div> -->
-
-</body>
-</html>
