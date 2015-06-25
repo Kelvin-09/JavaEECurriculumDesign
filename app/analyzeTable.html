@@ -51,7 +51,7 @@
             <small>528寝室成员各阶段的学习情况</small>
           </h1>
         </div>
-        <div class="form-horizontal">
+        <div class="form-horizontal" id="chartContent">
           <div class="form-group">
             <label class="control-label col-sm-2">图例</label>
             <div class="col-sm-10">
@@ -240,18 +240,198 @@
   <script type="text/javascript" src="scripts/bootstrap.js"></script>
 
 <script>
-$.ajax({
-  url: 'data/analyzeDataChart_01.json',
-  type: 'GET',
-  dataType: 'json',
-  success: function (data) {
+$(function () {
+  function transformData (data) {
     console.log(data);
-  },
-  error: function (data) {
-    alert('Can\'t get data');
+    // 用于存储转化完的数据
+    var tableObject = {};
+    // 数据矩阵
+    var tableMatrix = [];
+    // 用于缓存指针加快程序速度的
+    var tempA, tempB, tempC, tempD;
+
+    switch (data.question.questionType) {
+      case 8:
+        // 缓存一下数据的几个重要矩阵和对象
+        tempA = data.question;
+        tempB = tempA.matrixRowTitleArr;
+        tempC = tempA.matrixColTitleArr;
+        tempD = data.osms;
+
+        // 构建矩阵数组
+        $.each(tempB, function (indexI) {
+          tableMatrix[indexI] = [];
+          $.each(tempC, function (indexJ) {
+            tableMatrix[indexI][indexJ] = [];
+          });
+        })
+
+        // 向矩阵数组中填充数据
+        $.each(tempD, function (index, element) {
+          tableMatrix[element.matrixRowIndex][element.matrixColIndex][element.matrixSelectIndex] = element.count;
+        })
+
+        // 将属性附加到返回对象上
+        tableObject.count = data.count;
+        tableObject.title = tempA.title;
+        tableObject.questionType = tempA.questionType;
+        tableObject.matrixRowTitleArr = tempA.matrixRowTitleArr;
+        tableObject.matrixColTitleArr = tempA.matrixColTitleArr;
+        tableObject.matrixSelectOptionArr = tempA.matrixSelectOptionArr;
+        tableObject.dataMatrix = tableMatrix;
+        break;
+      default:
+        alert('接收到的数据格式错误！');
+        break;
+    }
+    return tableObject;
   }
+
+  // 计算总共sum个的情况下，需要使用的color数组
+  function calculateColors (sum) {
+    var i, tempColor, result = [], colorMax = 16777215;
+
+    for (i = 0; i < sum; ++i) {
+      tempColor = (colorMax * i / sum).toString(16);
+      tempColor = '#' + new Array(tempColor.length > 6 ? 0 : 6 - tempColor.length + 1).join('0') + tempColor;
+      result.push(tempColor);
+    }
+
+    return result;
+  }
+
+  // 图例标题模板
+  var legendTextTemplate = '<label class="control-label col-sm-2">图例</label>';
+  // 图例中的container模板
+  var colSm10Template = '<div class="col-sm-10"></div>';
+  // 图例图像模板
+  var legendContainerTemplate = '' + 
+    '<div class="legend-container">' + 
+      '<div class="legend-box"></div>' + 
+      '<label class="legend-label">{0}</label>' + 
+    '</div>';
+  // form-group模板
+  var formGroupTemplate = '<div class="form-group"></div>';
+  var progressRowTextTemplate = '<label class="control-label col-sm-2 col-lg-1">{0}</label>';
+  var progressColTextTemplate = '<label class="control-label col-xs-2 col-lg-1">{0}</label>';
+  var progressRowOutTemplate = '<div class="col-sm-10 col-lg-11"></div>';
+
+  // 制作图例
+  function produceLegend (selectOptions, colors) {
+    var legendText, legendContainer, legendContainers = [];
+
+    legendText = $(legendTextTemplate);
+    $.each(selectOptions, function (index, element) {
+      legendContainer = $(legendContainerTemplate.replace(/\{0\}/, element));
+      legendContainer.find('.legend-box').css('backgroundColor', colors[index]);
+      legendContainers.push(legendContainer);
+    })
+
+    return $(formGroupTemplate).append(legendText, $(colSm10Template).append(legendContainers));
+  }
+
+  function printData (data) {
+
+    var colors;
+    var formGroups = []; // 所有form-group框体
+
+    // 初始化颜色
+    colors = calculateColors(data.matrixSelectOptionArr.length);
+    // 初始化图例
+    formGroups.push(produceLegend(data.matrixSelectOptionArr, colors));
+
+    var i, j, k, lenI, lenJ, lenK;
+    var tempRowOptions, tempColOptions, tempSelectOptions;
+    var tempMatrix, tempMatrixRow, tempMatrixCol;
+    var matrixRowText, matrixColText;
+    var matrixRow, matrixCol;
+    var matrixCols = [];
+    var sortedArray, progressMatrix = [];
+
+    tempRowOptions = data.matrixRowTitleArr;
+    tempColOptions = data.matrixColTitleArr;
+    tempSelectOptions = data.matrixSelectOptionArr;
+
+    tempMatrix = data.dataMatrix;
+
+    $.each(tempMatrix, function (indexRow, elementRow) {
+      matrixCols = [];
+      matrixRowText = $(progressRowTextTemplate.replace(/\{0\}/, tempRowOptions[indexRow]));
+
+      $.each(elementRow, function (indexCol, elementCol) {
+        progressMatrix = [];
+        matrixColText = $(progressColTextTemplate.replace(/\{0\}/, tempColOptions[indexCol]));
+
+        sortedArray = elementCol.slice().sort(function (a, b) { return a - b; });
+
+        matrixCols.push($(formGroupTemplate).append(matrixColText));
+      });
+
+      matrixRow = $(formGroupTemplate).append(matrixRowText, $(progressRowOutTemplate).append(matrixCols));
+      formGroups.push(matrixRow);
+    });
+
+
+    // for (i = 0, lenI = tempMatrix.length; i < lenI; ++i) {
+    //   tempMatrixRow = tempMatrix[i];
+    //   matrixCols = [];
+    //   matrixRowText = $(progressRowTextTemplate.replace(/\{0\}/, tempRowOptions[i]));
+
+    //   for (j = 0, lenJ = tempMatrixRow.length; j < lenJ; ++j) {
+    //     tempMatrixCol = tempMatrixRow[j];
+    //     progressMatrix = [];
+    //     matrixColText = $(progressColTextTemplate.replace(/\{0\}/, tempColOptions[j]));
+
+    //     sortedArray = tempMatrixCol.slice().sort(function (a, b) { return a - b; });
+
+    //     matrixCols.push($(formGroupTemplate).append(matrixColText));
+    //   }
+
+    //   matrixRow = $(formGroupTemplate).append(matrixRowText, $(progressRowOutTemplate).append(matrixCols));
+    //   formGroups.push(matrixRow);
+    // }
+
+    $('#chartContent').append(formGroups);
+  }
+
+  $.ajax({
+    url: 'data/analyzeDataChart_02.json',
+    type: 'GET',
+    dataType: 'json',
+    success: function (data) {
+      var transformedData;
+      transformedData = transformData(data[0]);
+      printData(transformedData);
+    },
+    error: function (data) {
+      alert('Can\'t get data');
+    }
+  });
 });
 </script>
+
+<!-- <div class="form-group">
+  <label class="control-label col-sm-2 col-lg-1">小明</label>
+  <div class="col-sm-10 col-lg-11">
+    <div class="form-group">
+      <label class="control-label col-xs-2 col-lg-1">小学</label>
+      <div class="col-xs-10  col-lg-11">
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" style="width: 35%;">35</div>
+          <div class="progress-bar progress-bar-primary" style="width: 35%;">35</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-xs-2  col-lg-1">初中</label>
+      <div class="col-xs-10  col-lg-11">
+        <div class="progress">
+          <div class="progress-bar progress-bar-warning" style="width:20%">20</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
 
 </body>
 </html>
