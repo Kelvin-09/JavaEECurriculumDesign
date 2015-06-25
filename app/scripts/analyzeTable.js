@@ -1,1 +1,213 @@
-$(function(){function a(a){var b,c,d,e,f={},g=[];switch(a.question.questionType){case 8:b=a.question,c=b.matrixRowTitleArr,d=b.matrixColTitleArr,e=a.osms,$.each(c,function(a){g[a]=[],$.each(d,function(b){g[a][b]=[]})}),$.each(e,function(a,b){g[b.matrixRowIndex][b.matrixColIndex][b.matrixSelectIndex]=b.count}),f.count=a.count,f.title=b.title,f.questionType=b.questionType,f.matrixRowTitleArr=b.matrixRowTitleArr,f.matrixColTitleArr=b.matrixColTitleArr,f.matrixSelectOptionArr=b.matrixSelectOptionArr,f.dataMatrix=g;break;default:alert("接收到的数据格式错误！")}return f}function b(a){var b=["bg-blue ","bg-aqua ","bg-teal ","bg-olive ","bg-green ","bg-lime ","bg-yellow ","bg-orange ","bg-red ","bg-maroon ","bg-fuchsia ","bg-purple "],c=Math.random()*b.length;return b.slice(c).concat(b.slice(0,c))}function c(a,b){var c,d,e=[];return c=$(f),$.each(a,function(a,c){d=$(h.replace(/\{0\}/,c)),d.find(".legend-box").addClass(b[a]),e.push(d)}),$(i).append(c,$(g).append(e))}function d(a){var b,c,d={};return b=a.slice(),c=a.slice().sort(function(a,b){return a-b}),$.each(c,function(a,c){var e=b.indexOf(c);b[e]=void 0,d[c]?d[c].push(e):d[c]=[e]}),d}function e(a){var e,f,g,h,o,p,q=[];f=a.count,e=a.dataMatrix,g=a.matrixRowTitleArr,h=a.matrixColTitleArr,o=a.matrixSelectOptionArr,p=b(),q.push(c(a.matrixSelectOptionArr,p)),$.each(e,function(a,b){var c,e,r=[];c=$(j).text(g[a]),$.each(b,function(a,b){var c,e,g,j=[],l=0;c=$(k).text(h[a]),g=d(b),$.each(g,function(a,b){var c=[],d=$(n).css({width:(a-l)/f*100+"%"});l=a,$.each(b,function(a,b){c.push(o[b]),d.addClass(p[b])}),d.text(c.join("&")+" : "+a+"人"),j.push(d)}),e=$(m).find(".progress").append(j),r.push($(i).append(c,e))}),e=$(i).append(c,$(l).append(r)),q.push(e)}),$("#chartContent").append(q)}var f='<label class="control-label col-sm-2">图例</label>',g='<div class="col-sm-10"></div>',h='<div class="legend-container"><div class="legend-box"></div><label class="legend-label">{0}</label></div>',i='<div class="form-group"></div>',j='<label class="control-label col-sm-2 col-lg-1"></label>',k='<label class="control-label col-xs-2 col-lg-1"></label>',l='<div class="col-sm-10 col-lg-11"></div>',m='<div class="col-xs-10  col-lg-11"><div class="progress"></div></div>',n='<div class="progress-bar"></div>';$.ajax({url:"data/analyzeDataChart_02.json",type:"GET",dataType:"json",success:function(b){e(a(b[0]))},error:function(a){alert("Can't get data")}})});
+$(function () {
+  function transformData (data) {
+    // 用于存储转化完的数据
+    var tableObject = {};
+    // 数据矩阵
+    var tableMatrix = [];
+    // 用于缓存指针加快程序速度的
+    var tempA, tempB, tempC, tempD;
+
+    switch (data.question.questionType) {
+      case 8:
+        // 缓存一下数据的几个重要矩阵和对象
+        tempA = data.question;
+        tempB = tempA.matrixRowTitleArr;
+        tempC = tempA.matrixColTitleArr;
+        tempD = data.osms;
+
+        // 构建矩阵数组
+        $.each(tempB, function (indexI) {
+          tableMatrix[indexI] = [];
+          $.each(tempC, function (indexJ) {
+            tableMatrix[indexI][indexJ] = [];
+          });
+        })
+
+        // 向矩阵数组中填充数据
+        $.each(tempD, function (index, element) {
+          tableMatrix[element.matrixRowIndex][element.matrixColIndex][element.matrixSelectIndex] = element.count;
+        })
+
+        // 将属性附加到返回对象上
+        tableObject.count = data.count;
+        tableObject.title = tempA.title;
+        tableObject.questionType = tempA.questionType;
+        tableObject.matrixRowTitleArr = tempA.matrixRowTitleArr;
+        tableObject.matrixColTitleArr = tempA.matrixColTitleArr;
+        tableObject.matrixSelectOptionArr = tempA.matrixSelectOptionArr;
+        tableObject.dataMatrix = tableMatrix;
+        break;
+      default:
+        alert('接收到的数据格式错误！');
+        break;
+    }
+    return tableObject;
+  }
+
+  // 计算总共sum个的情况下，需要使用的color数组
+  function calculateColors (sum) {
+    // return [ 'bg-blue ', 'bg-aqua ', 'bg-teal ', 'bg-olive ', 
+    //   'bg-green ', 'bg-lime ', 'bg-yellow ', 'bg-orange ', 
+    //   'bg-red ', 'bg-maroon ', 'bg-fuchsia ', 'bg-purple ', 'bg-gray '
+    // ];
+
+var colorArray = [ 'bg-blue ', 'bg-aqua ', 'bg-teal ', 'bg-olive ', 
+  'bg-green ', 'bg-lime ', 'bg-yellow ', 'bg-orange ', 
+  'bg-red ', 'bg-maroon ', 'bg-fuchsia ', 'bg-purple '//, 'bg-gray '
+];
+var random = Math.random() * colorArray.length;
+
+return colorArray.slice(random).concat(colorArray.slice(0, random));
+  }
+
+  // 图例标题模板
+  var legendTextTemplate = '<label class="control-label col-sm-2">图例</label>';
+  // 图例中的container模板
+  var colSm10Template = '<div class="col-sm-10"></div>';
+  // 图例图像模板
+  var legendContainerTemplate = '' + 
+    '<div class="legend-container">' + 
+      '<div class="legend-box"></div>' + 
+      '<label class="legend-label">{0}</label>' + 
+    '</div>';
+  // form-group模板
+  var formGroupTemplate = '<div class="form-group"></div>';
+  var progressRowTextTemplate = '<label class="control-label col-sm-2 col-lg-1"></label>';
+  var progressColTextTemplate = '<label class="control-label col-xs-2 col-lg-1"></label>';
+  var progressRowOutTemplate = '<div class="col-sm-10 col-lg-11"></div>';
+  var progressRowInTemplate = '<div class="col-xs-10  col-lg-11"><div class="progress"></div></div>';
+  var progressBarTemplate = '<div class="progress-bar"></div>';
+  // style="min-width: 4em;"
+
+  // 制作图例
+  function produceLegend (selectOptions, colors) {
+    var legendText, legendContainer, legendContainers = [];
+
+    legendText = $(legendTextTemplate);
+    $.each(selectOptions, function (index, element) {
+      legendContainer = $(legendContainerTemplate.replace(/\{0\}/, element));
+      legendContainer.find('.legend-box').addClass(colors[index]);
+      legendContainers.push(legendContainer);
+    })
+
+    return $(formGroupTemplate).append(legendText, $(colSm10Template).append(legendContainers));
+  }
+
+  function transformSelectResult (selects) {
+    var backupArray, sortedArray, result = {};
+    backupArray = selects.slice();
+    sortedArray = selects.slice().sort(function (a, b) { return a - b; });
+
+    $.each(sortedArray, function (indexArray, elementArray) {
+      var positionArray = backupArray.indexOf(elementArray);
+      backupArray[positionArray] = undefined;
+      result[elementArray]? result[elementArray].push(positionArray): result[elementArray] = [positionArray];
+    });
+
+    return result;
+  }
+
+  function printData (data) {
+    // 用于缓存数据矩阵和总投票人数
+    var tempMatrix, personCount;
+    // 用于缓存行列以及选项的文字
+    var tempRowOptions, tempColOptions, tempSelectOptions;
+
+    var colors;                   // 进度条颜色数组
+    var formGroups = [];          // 所有form-group框体
+
+    // 初始化对应数据
+    personCount = data.count;
+    tempMatrix = data.dataMatrix;
+    tempRowOptions = data.matrixRowTitleArr;
+    tempColOptions = data.matrixColTitleArr;
+    tempSelectOptions = data.matrixSelectOptionArr;
+
+    colors = calculateColors();   // 初始化颜色
+    formGroups.push(produceLegend(data.matrixSelectOptionArr, colors));   // 初始化图例
+
+    // 遍历行数据
+    $.each(tempMatrix, function (indexRow, elementRow) {
+      var matrixRowText, matrixRow;
+      var matrixCols = [];            // 存储该行中所有列
+
+      // 初始化行标题
+      matrixRowText = $(progressRowTextTemplate).text(tempRowOptions[indexRow]);
+
+      // 遍历列数据
+      $.each(elementRow, function (indexCol, elementCol) {
+        // 思想：
+        // 备份出两个数组来，一个排序一个不动（数组内容为选择对应选项的人数）
+        // 遍历排序过的数组，将未排序的数组对应数字的位置提取出来并存入对象map中
+        // 格式为：{ 人数: [ 选项1编号, 选项2编号 ] }（未排序时选项的编号和位置是相等的）
+        // 并将未排序的备份的对应位置置undefined（防止重复选择）
+        var matrixColText, matrixColBody, progresseBars = [];
+        var progressMatrix, tempLast = 0;
+
+        // 初始化列名
+        matrixColText = $(progressColTextTemplate).text(tempColOptions[indexCol]);
+        // 合并同样人数的项
+        progressMatrix = transformSelectResult(elementCol);
+
+        // 遍历人数统计，将人数相同的多个项合并为一个进度条
+        $.each(progressMatrix, function (indexPersonCount, elementPersonCount) {
+          var progressMerge = [];       // 用于存储相同人数选项的名称的数组
+          // 初始化进度条并设置宽度
+          var progressBar = $(progressBarTemplate).css({
+            'width': ((indexPersonCount - tempLast) / personCount * 100) + '%'
+          });
+          // 设置上次的长度，下次的减去上次的就是中间应该显示的长出来的那一段的长度
+          tempLast = indexPersonCount;
+
+          // 把同名的名字都加上，并赋值颜色
+          $.each(elementPersonCount, function (indexSelect, elementSelect) {
+            progressMerge.push(tempSelectOptions[elementSelect]);
+            progressBar.addClass(colors[elementSelect]);
+          });
+
+          progressBar.text(progressMerge.join('&') + ' : ' + indexPersonCount + '人');
+          progresseBars.push(progressBar);
+        });
+
+        matrixColBody = $(progressRowInTemplate).find('.progress').append(progresseBars)
+
+        matrixCols.push($(formGroupTemplate).append(matrixColText, matrixColBody));
+      });
+
+      matrixRow = $(formGroupTemplate).append(matrixRowText, $(progressRowOutTemplate).append(matrixCols));
+      formGroups.push(matrixRow);
+    });
+
+    $('#chartContent').append(formGroups);
+  }
+
+  $.ajax({
+    url: 'data/analyzeDataChart_02.json',
+    type: 'GET',
+    dataType: 'json',
+    success: function (data) {
+      printData(transformData(data[0]));
+    },
+    error: function (data) {
+      alert('Can\'t get data');
+    }
+  });
+});
+
+
+// var i, tempColor, result = [];
+// var colorSalt = 3355443, colorScope = 16777215 - 2 * colorSalt;
+
+// for (i = 0; i < sum; ++i) {
+//   tempColor = (colorScope * i / sum + colorSalt).toString(16);
+//   tempColor = '#' + new Array(tempColor.length > 6 ? 0 : 6 - tempColor.length + 1).join('0') + tempColor;
+//   result.push(tempColor);
+// }
+
+// return result;
+
+// [ 'bg-navy', 'bg-blue ', 'bg-aqua ', 'bg-teal ', 
+//   'bg-olive ', 'bg-green ', 'bg-lime ', 'bg-yellow ', 
+//   'bg-orange ', 'bg-red ', 'bg-fuchsia ', 'bg-purple ', 
+//   'bg-maroon ', 'bg-white ', 'bg-gray ', 'bg-silver ', 'bg-black'
+// ]
