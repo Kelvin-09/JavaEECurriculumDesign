@@ -1,0 +1,28 @@
+[{
+  "count": 8,
+  "osms": [
+    {"matrixRowIndex":0,"matrixRowLabel":"","count":2,"matrixSelectIndex":0,"optionLabel":"吃","optionIndex":"0","matrixSelectLabel":"","matrixColIndex":0,"matrixColLabel":""},
+    {"matrixRowIndex":0,"matrixRowLabel":"","count":1,"matrixSelectIndex":0,"optionLabel":"喝","optionIndex":"1","matrixSelectLabel":"","matrixColIndex":0,"matrixColLabel":""},
+    {"matrixRowIndex":0,"matrixRowLabel":"","count":2,"matrixSelectIndex":0,"optionLabel":"哔","optionIndex":"2","matrixSelectLabel":"","matrixColIndex":0,"matrixColLabel":""},
+    {"matrixRowIndex":0,"matrixRowLabel":"","count":2,"matrixSelectIndex":0,"optionLabel":"赌","optionIndex":"3","matrixSelectLabel":"","matrixColIndex":0,"matrixColLabel":""}
+  ],
+  "question": {
+    "matrixSelectOptionArr":[],
+    "matrixColTitleArr":[],
+    "other":true,
+    "otherSelectOptions":"",
+    "otherStyle":1,
+    "matrixColTitles":"",
+    "matrixSelectOptions":"",
+    "id":2,
+    "optionArr":["吃","喝","哔","赌"],
+    "title":"你的爱好",
+    "otherSelectOptionArr":[],
+    "page":null,
+    "matrixRowTitles":"",
+    "questionType":1,
+    "matrixRowTitleArr":[],
+    "options":"吃\r\n喝\r\n哔\r\n赌"
+  }
+}]
+    

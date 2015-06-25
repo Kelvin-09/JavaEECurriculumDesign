@@ -141,29 +141,30 @@
           <p>这里有很多有意思的问题模板，希望你能喜欢！</p>
         </div>
         <div class="list-group">
-          <!-- <div class="list-group"> -->
-            <a href="designSurvey.html" class="list-group-item">
-              <h4 class="list-group-item-heading">模板一</h4>
-              <p class="list-group-item-text">这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板.</p>
-            </a>
-            <a href="designSurvey.html" class="list-group-item">
-              <h4 class="list-group-item-heading">模板一</h4>
-              <p class="list-group-item-text">这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板.</p>
-            </a>
-            <a href="designSurvey.html" class="list-group-item">
-              <h4 class="list-group-item-heading">模板一</h4>
-              <p class="list-group-item-text">这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板.</p>
-            </a>
-            <a href="designSurvey.html" class="list-group-item">
-              <h4 class="list-group-item-heading">模板一</h4>
-              <p class="list-group-item-text">这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板.</p>
-            </a>
-          <!-- </div> -->
+          <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">模板一</h4>
+            <p class="list-group-item-text">这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板.</p>
+          </a>
+          <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">模板一</h4>
+            <p class="list-group-item-text">这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板.</p>
+          </a>
+          <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">模板一</h4>
+            <p class="list-group-item-text">这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板.</p>
+          </a>
+          <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">模板一</h4>
+            <p class="list-group-item-text">这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板,这是一个很好的模板.</p>
+          </a>
         </div>
         <div class="modal-footer">
+          <p id="alertTemplate" class="text-danger" style="display: none;">
+            未选中任何模板！
+          </p>
           <button class="btn btn-default" data-dismiss="modal">Close</button>
           <a href="designSurvey.html" class="btn btn-success">仍然自行创建</a>
-          <a href="designSurvey.html" class="btn btn-primary">使用该模板</a>
+          <a href="#" id="selectTemplate" class="btn btn-primary">使用该模板</a>
         </div>
       </div>
     </div>
@@ -226,5 +227,28 @@
 
   <script type="text/javascript" src="scripts/jquery.js"></script>
   <script type="text/javascript" src="scripts/bootstrap.js"></script>
+<script>
+$(function () {
+  var $items = $('.list-group>a.list-group-item');
+  $items.on('click', function (e) {
+    var $this = $(this);
+    if ($this.hasClass('active')) {
+      $items.removeClass('active');
+    } else {
+      $items.removeClass('active');
+      $this.addClass('active');
+    }
+  });
+
+  $('#selectTemplate').on('click', function (e) {
+    var $selectedTemplate = $('.list-group>a.list-group-item.active');
+    if ($selectedTemplate.length) {
+      // do sth
+    } else {
+      $('#alertTemplate').show();
+    }
+  });
+});
+</script>
 </body>
 </html>

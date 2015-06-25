@@ -1,0 +1,22 @@
+
+.form-group .progress {
+  margin: 7px 15px 0px 15px;
+}
+
+.legend-container {
+  display: inline-block;
+  margin: 7px 15px 0px 15px;
+
+  &>.legend-label {
+    vertical-align: super;
+  }
+
+  &>.legend-box {
+    border-radius: .4em;
+    box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    height: 1.5em;
+    width: 1.5em;
+    margin-right: 5px;
+  }
+}
