@@ -1,0 +1,24 @@
+{
+  "name": "javaee",
+  "version": "1.0.0",
+  "authors": [
+    "Kelvin-09 <kelvinlpsun@hotmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap-sass": "~3.3.5",
+    "Colors": "https://github.com/mrmrs/colors.git#~2.2.0",
+    "Highcharts Working Repo": "highslide-software/highcharts.com#4.0.4"
+  }
+}

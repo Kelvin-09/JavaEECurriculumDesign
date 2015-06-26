@@ -1,4 +1,4 @@
-$(function () {
+// $(function () {
   function transformData (data) {
     // 用于存储转化完的数据
     var tableObject = {};
@@ -51,13 +51,13 @@ $(function () {
     //   'bg-red ', 'bg-maroon ', 'bg-fuchsia ', 'bg-purple ', 'bg-gray '
     // ];
 
-var colorArray = [ 'bg-blue ', 'bg-aqua ', 'bg-teal ', 'bg-olive ', 
-  'bg-green ', 'bg-lime ', 'bg-yellow ', 'bg-orange ', 
-  'bg-red ', 'bg-maroon ', 'bg-fuchsia ', 'bg-purple '//, 'bg-gray '
-];
-var random = Math.random() * colorArray.length;
+    var colorArray = [ 'bg-blue ', 'bg-aqua ', 'bg-teal ', 'bg-olive ', 
+      'bg-green ', 'bg-lime ', 'bg-yellow ', 'bg-orange ', 
+      'bg-red ', 'bg-maroon ', 'bg-fuchsia ', 'bg-purple '//, 'bg-gray '
+    ];
+    var random = Math.random() * colorArray.length;
 
-return colorArray.slice(random).concat(colorArray.slice(0, random));
+    return colorArray.slice(random).concat(colorArray.slice(0, random));
   }
 
   // 图例标题模板
@@ -180,19 +180,7 @@ return colorArray.slice(random).concat(colorArray.slice(0, random));
 
     $('#chartContent').append(formGroups);
   }
-
-  $.ajax({
-    url: 'data/analyzeDataChart_02.json',
-    type: 'GET',
-    dataType: 'json',
-    success: function (data) {
-      printData(transformData(data[0]));
-    },
-    error: function (data) {
-      alert('Can\'t get data');
-    }
-  });
-});
+// });
 
 
 // var i, tempColor, result = [];

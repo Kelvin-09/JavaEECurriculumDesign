@@ -138,7 +138,13 @@ module.exports = function (grunt) {
           cwd: '<%= config.temp %>/fonts',
           src: '{,*/}*',
           dest: '<%= config.dist %>/fonts'
-        }]
+        }, {
+          expand: true,
+          dot: true,
+          cwd: '<%= config.app %>/data',
+          src: '{,*/}*.json',
+          dest: '<%= config.dist %>/data'
+        }]      // 其他工程时删除该复制项，这里是用来从data复制模拟数据用的
       }
     },
     // 清理工程目录
