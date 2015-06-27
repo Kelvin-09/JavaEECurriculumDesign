@@ -14,6 +14,9 @@ function transformData (data) {
   switch (data.question.questionType) {
     case 0:
     case 1:
+    case 2:
+    case 3:
+    case 4:
       tempB = tempA.optionArr;
       $.each(tempB, function (index) {
         tableMatrix[index] = {};
