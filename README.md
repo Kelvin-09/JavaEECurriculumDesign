@@ -8,4 +8,5 @@ Tools Uses:
 1. grunt
 2. bower
 
-**TODO: Rewrite the analyzeTable.html with a MVC framework.**
+&nbsp;√&nbsp;&nbsp;~~**TODO: Rewrite the analyzeTable.html with a MVC framework.**~~
+〇&nbsp;**TODO: Rewrite the analyzeProgress.html with a modular framework(like sea.js).**
