@@ -18,6 +18,7 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "bootstrap-sass": "~3.3.5",
-    "Colors": "https://github.com/mrmrs/colors.git#~2.2.0"
+    "Colors": "https://github.com/mrmrs/colors.git#~2.2.0",
+    "angular": "~1.4.1"
   }
 }

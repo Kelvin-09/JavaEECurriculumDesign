@@ -51,6 +51,7 @@ module.exports = function (grunt) {
         ]
       }
     },
+
     // 本地静态服务器
     connect: {
       options: {
@@ -120,6 +121,10 @@ module.exports = function (grunt) {
           cwd: '',
           dest: '<%= config.temp %>/scripts/bootstrap.js',
           src: 'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js'
+        }, {
+          cwd: '',
+          dest: '<%= config.temp %>/scripts/angular.js',
+          src: 'bower_components/angular/angular.js'
         }]
       },
       dist: {
@@ -138,6 +143,17 @@ module.exports = function (grunt) {
           cwd: '<%= config.temp %>/fonts',
           src: '{,*/}*',
           dest: '<%= config.dist %>/fonts'
+        }, {
+          dest: '<%= config.dist %>/scripts/jquery.js',
+          src: 'bower_components/jquery/dist/jquery.min.js'
+        }, {
+          cwd: '',
+          dest: '<%= config.dist %>/scripts/bootstrap.js',
+          src: 'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js'
+        }, {
+          cwd: '',
+          dest: '<%= config.dist %>/scripts/angular.js',
+          src: 'bower_components/angular/angular.min.js'
         }, {
           expand: true,
           dot: true,
@@ -204,13 +220,15 @@ module.exports = function (grunt) {
     },
     uglify: {
       dist: {
-        files: [{
-          expand: true,
-          dot: true,
-          cwd: '<%= config.temp %>/scripts',
-          dest: '<%= config.dist %>/scripts',
-          src: ['{,*/}*.js']
-        }, {
+        files: [
+//        {
+//          expand: true,
+//          dot: true,
+//          cwd: '<%= config.temp %>/scripts',
+//          dest: '<%= config.dist %>/scripts',
+//          src: ['{,*/}*.js']
+//        }, 
+        {
           expand: true,
           dot: true,
           cwd: '<%= config.app %>/scripts',
