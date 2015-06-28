@@ -9,4 +9,5 @@ Tools Uses:
 2. bower
 
 &nbsp;√&nbsp;&nbsp;~~**TODO: Rewrite the analyzeTable.html with a MVC framework.**~~
+
 〇&nbsp;**TODO: Rewrite the analyzeProgress.html with a modular framework(like sea.js).**
