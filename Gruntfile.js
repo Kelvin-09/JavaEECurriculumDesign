@@ -125,6 +125,10 @@ module.exports = function (grunt) {
           cwd: '',
           dest: '<%= config.temp %>/scripts/angular.js',
           src: 'bower_components/angular/angular.js'
+        }, {
+          cwd: '',
+          dest: '<%= config.temp %>/scripts/require.js',
+          src: 'bower_components/requirejs/require.js'
         }]
       },
       dist: {
@@ -154,6 +158,10 @@ module.exports = function (grunt) {
           cwd: '',
           dest: '<%= config.dist %>/scripts/angular.js',
           src: 'bower_components/angular/angular.min.js'
+        }, {
+          cwd: '',
+          dest: '<%= config.dist %>/scripts/require.js',
+          src: 'bower_components/requirejs/require.js'
         }, {
           expand: true,
           dot: true,
