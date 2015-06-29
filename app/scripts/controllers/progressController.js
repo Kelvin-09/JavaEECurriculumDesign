@@ -1,8 +1,9 @@
-define(['modules/progressModule', 'graphicUtils'], function (progressModule, graphicUtils) {
+define(['graphicUtils', 'angular', 'factories/progressFactory'], function (graphicUtils, angular) {
     'use strict';
 
+    var controllers = angular.module('progress.controllers', []);
     // 控制器 用于读取数据
-    progressModule.controller('dataController', [ '$scope', '$q', 'dataFactory', function ($scope, $q, dataFactory) {
+    controllers.controller('dataController', ['$scope', '$q', 'dataFactory', function ($scope, $q, dataFactory) {
         dataFactory.requestOptions().then(function (data) {
             return graphicUtils.transform(data);
         }, function (error) {
@@ -16,4 +17,5 @@ define(['modules/progressModule', 'graphicUtils'], function (progressModule, gra
 
         $scope.colors = graphicUtils.colors();
     }]);
+    return controllers;
 });

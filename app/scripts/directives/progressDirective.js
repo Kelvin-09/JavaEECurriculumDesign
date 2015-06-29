@@ -1,8 +1,9 @@
-define(['modules/progressModule'], function (progressModule) {
+define(['angular'], function (angular) {
     'use strict';
 
+    var directives = angular.module('progress.directives', []);
     // 指令，用于生成图例
-    progressModule.directive('legendbox', function () {
+    directives.directive('legendbox', function () {
         return {
             replace: true,
             restrict: 'AE',
@@ -10,11 +11,12 @@ define(['modules/progressModule'], function (progressModule) {
         };
     });
     // 指令，用于生成进度条
-    progressModule.directive('progressbox', function () {
+    directives.directive('progressbox', function () {
         return {
             replace: true,
             restrict: 'AE',
             templateUrl: 'views/progressbox.html'
         }
     });
+    return directives;
 });

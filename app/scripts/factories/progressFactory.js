@@ -1,8 +1,9 @@
-define(['modules/progressModule'], function (progressModule) {
+define(['angular'], function (angular) {
     'use strict';
 
+    var factories = angular.module('progress.factories', []);
     // factory 用于请求数据
-    progressModule.factory('dataFactory', ['$q', '$http', function ($q, $http) {
+    factories.factory('dataFactory', ['$q', '$http', function ($q, $http) {
         // 地址与返回用对象
         var dataUrl = 'data/analyzeDataChart_02.json';
         var returnObject = {};
@@ -24,4 +25,6 @@ define(['modules/progressModule'], function (progressModule) {
 
         return returnObject;
     }]);
+
+    return factories;
 });
