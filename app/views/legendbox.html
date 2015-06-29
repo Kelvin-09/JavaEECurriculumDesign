@@ -3,7 +3,7 @@
   <div class="col-sm-10">
     <div class="legend-container" ng-repeat="legend in legends" ng-init="index = $index">
       <div class="legend-box {{colors[index]}}"></div>
-      <label class="legend-label">{{legend}}</label>
+      <label class="legend-label" ng-bind="legend"></label>
     </div>
   </div>
 </div>

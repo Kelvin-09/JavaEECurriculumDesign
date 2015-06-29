@@ -1,11 +1,11 @@
 <div class="form-group" ng-repeat="matrixRow in data.dataMatrix track by $index" ng-init="rowNum = $index">
-  <label class="control-label col-sm-2 col-lg-1">{{data.matrixRowTitleArr[rowNum]}}</label>
+  <label class="control-label col-sm-2 col-lg-1" ng-bind="data.matrixRowTitleArr[rowNum]"></label>
   <div class="col-sm-10  col-lg-11">
     <div class="form-group" ng-repeat="matrixColumn in matrixRow track by $index" ng-init="colNum = $index">
-      <label class="control-label col-xs-2 col-lg-1">{{data.matrixColTitleArr[colNum]}}</label>
+      <label class="control-label col-xs-2 col-lg-1" ng-bind="data.matrixColTitleArr[colNum]"></label>
       <div class="col-xs-10  col-lg-11">
         <div class="progress">
-          <div class="progress-bar {{colors[selNum]}}" ng-repeat="matrixSelect in matrixColumn track by $index" ng-init="selNum = $index" style="width: {{100 * matrixSelect / data.count}}%;">{{matrixSelect}}人</div>
+          <div class="progress-bar {{colors[selNum]}}" ng-repeat="matrixSelect in matrixColumn track by $index" ng-init="selNum = $index" style="width: {{100 * matrixSelect / data.count}}%;"><span ng-bind="matrixSelect"></span>人</div>
         </div>
       </div>
     </div>

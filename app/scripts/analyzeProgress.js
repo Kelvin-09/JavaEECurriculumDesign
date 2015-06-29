@@ -3,7 +3,7 @@
 var analyzeProgress = angular.module('analyzeProgress', []);
 
 // factory 用于请求数据
-analyzeProgress.factory('dataFactory', function ($q, $http) {
+analyzeProgress.factory('dataFactory', ['$q', '$http', function ($q, $http) {
     // 地址与返回用对象
     var dataUrl = 'data/analyzeDataChart_02.json';
     var returnObject = {};
@@ -24,7 +24,7 @@ analyzeProgress.factory('dataFactory', function ($q, $http) {
     };
 
     return returnObject;
-});
+}]);
 // 指令，用于生成图例
 analyzeProgress.directive('legendbox', function () {
     return {
@@ -42,7 +42,7 @@ analyzeProgress.directive('progressbox', function () {
     }
 });
 
-analyzeProgress.controller('legend', function ($scope, $q, dataFactory) {
+analyzeProgress.controller('legend', [ '$scope', '$q', 'dataFactory', function ($scope, $q, dataFactory) {
 
     dataFactory.requestOptions().then(function (data) {
         return transformData(data);
@@ -57,7 +57,7 @@ analyzeProgress.controller('legend', function ($scope, $q, dataFactory) {
     });
 
     $scope.colors = calculateColors();
-});
+}]);
 
 function transformData (data) {
     // 用于存储转化完的数据
