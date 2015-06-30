@@ -1,6 +1,6 @@
 # JavaEE curriculum design's front end
 
-Packages Uses:
+**Packages Uses:**
 
 1. jquery
 
@@ -12,7 +12,7 @@ Packages Uses:
 
 5. Colors
 
-Tools Uses:
+**Tools Uses:**
 
 1. grunt
 
