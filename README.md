@@ -8,7 +8,7 @@ Tools Uses:
 1. grunt
 2. bower
 
----
+##TODO list
 
 √. ~~**TODO: Rewrite the analyzeTable.html with a MVC framework.**~~
 
